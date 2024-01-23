@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Table</title>
+    <link rel="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="my_app" ng-controller="maintain_asset">
+
+    <script>
+        const app = angular.module("my_app",[])
+        app.controller("maintain_asset",($scope, $http) => {
+            $scope.addMaintenance = function () {
+                $http.post("http://localhost:8085/maintainTable/maintainTab", {
+                    assetId: $scope.assetId,
+                    mdate: $scope.mdate,
+                    mtype: $scope.mtype,
+                    mstatus: $scope.mstatus,
+                    cost: $scope.cost,
+                    duration: $scope.duration,
+                    nextMaintenance:$scope.nextMaintenance,
+                }).then((msg) => console.log(msg)).catch((msg) => console.log(msg)) 
+            }
+        },     
+        )     
+        </script>
+    <form>
+        <div>
+            <h1>Maintenance Table</h1>
+            <label>AssetID</label>
+            <input type="text" ng-model="assetId"><br>
+            <label>Maintenance Date</label>
+            <input type="date" ng-model="mdate"><br>
+            <label>Maintenance Type</label>
+            <input type="text" ng-model="mtype"><br>
+            <label>Status</label>
+            <input type="text" ng-model="mstatus"><br>
+            <label>Cost</label>
+            <input type="text" ng-model="cost"><br>
+            <label>Duration</label>
+            <input type="text" ng-model="duration"><br>
+            <label>Next Maintenance</label>
+            <input type="date" ng-model="nextMaintenance"><br>
+            <button ng-click="addMaintenance()">MAINTAIN</button>
+        </div>
+    </form>
+</body>
+</html>

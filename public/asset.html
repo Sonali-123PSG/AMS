@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Table</title>
+    <link rel="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myAsset" ng-controller="add_Asset">
+
+    <script>
+        const app = angular.module("myAsset",[])
+        app.controller("add_Asset",($scope, $http) => {
+            $scope.addAssert = function() {
+                $http.post("http://localhost:8085/assetTable/assetTab",{
+                    aname: $scope.aname,
+                    pdate: $scope.pdate,
+                    pcost: $scope.pcost,
+                    manufact: $scope.manufact,
+                    mod: $scope.mod,
+                    sno: $scope.sno,
+                    status: $scope.status,
+                    locationID: $scope.locationID,
+                    warDate: $scope.warDate
+                }).then((msg) => console.log(msg)).catch((msg)=>console.log(msg))
+            }
+        },     
+        )
+        
+        </script>
+    <form>
+        <div>
+            <h1>ASSET TABLE</h1>
+        <label>Asset Name</label>
+        <input type="text" ng-model="aname"><br>
+        <label>Purchase Date</label>
+        <input type="date" ng-model="pdate"><br>
+        <label>Purchase Cost</label>
+        <input type="text" ng-model="pcost"><br>
+        <label>Manufacturer</label>
+        <input type="text" ng-model="manufact"><br>
+        <label>Model</label>
+        <input type="text" ng-model="mod"><br>
+        <label>Serial Number</label>
+        <input type="text" ng-model="sno"><br>
+        <label>Status</label>
+        <input type="text" ng-model="status"><br>
+        <label>Location ID</label>
+        <input type="text" ng-model="locationID"><br>
+        <label>Warranty Date</label>
+        <input type="date" ng-model="warDate"><br>
+        <button ng-click="addAssert()"> SUBMIT </button>
+        </div>
+    </form>
+</body>
+</html>

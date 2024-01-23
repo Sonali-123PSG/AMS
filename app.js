@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const assetR = require("./routes/assetRoute")
+const maintainA = require("./routes/maintenanceRoute")
 const bodyParser = require("body-parser");
 const port = 8085
 const path = require('path')
@@ -15,4 +16,5 @@ app.get('/',(req,res)=>
 })
 
 app.use('/assetTable',assetR)
+app.use('/maintainTable',maintainA)
 app.listen(port,()=>console.log('Server is running on port 8085'))

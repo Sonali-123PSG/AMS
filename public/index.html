@@ -4,52 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asset Table</title>
-    <link rel="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="asset.html"></script>
 </head>
-<body ng-app="my_app" ng-controller="add_Assert">
+<body ng-app="my_app" ng-controller="add_Asset">
+    <form> 
+        <center>
+            <a href="assetTable"><button type="button">ADD ASSET</button></a>
+            <br><br>
+            <a href="maintainTable"><button type="button">MAINTAIN ASSET</button></a>
+        </center>
 
-    <script>
-        const app = angular.module("my_app",[])
-        app.controller("add_Assert",($scope, $http) => {
-            $scope.addAssert = function() {
-                $http.post("http://localhost:8085/assetTable/assetTab",{
-                    aname: $scope.aname,
-                    pdate: $scope.pdate,
-                    pcost: $scope.pcost,
-                    manufact: $scope.manufact,
-                    mod: $scope.mod,
-                    sno: $scope.sno,
-                    status: $scope.status,
-                    locationID: $scope.locationID,
-                    warDate: $scope.warDate
-                }).then((msg) => console.log(msg)).catch((msg)=>console.log(msg))
-            }
-        })
-    </script>
-    <form>
-        <div>
-            <h1>ASSET TABLE</h1>
-        <label>Asset Name</label>
-        <input type="text" ng-model="aname"><br>
-        <label>Purchase Date</label>
-        <input type="date" ng-model="pdate"><br>
-        <label>Purchase Cost</label>
-        <input type="text" ng-model="pcost"><br>
-        <label>Manufacturer</label>
-        <input type="text" ng-model="manufact"><br>
-        <label>Model</label>
-        <input type="text" ng-model="mod"><br>
-        <label>Serial Number</label>
-        <input type="text" ng-model="sno"><br>
-        <label>Status</label>
-        <input type="text" ng-model="status"><br>
-        <label>Location ID</label>
-        <input type="text" ng-model="locatioID"><br>
-        <label>Warranty Date</label>
-        <input type="date" ng-modelok="warDate"><br>
-        <button ng-click="addAssert()"> SUBMIT </button>
-        </div>
     </form>
 </body>
 </html>
